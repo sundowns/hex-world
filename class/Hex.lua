@@ -12,7 +12,7 @@ Hex = Class {
     end;
     calculateVertices = function(self)
         self.vertices = {}
-        for i = 1, 6, 1 do
+        for i = 0, 5, 1 do
             local v_x, v_y = self:calculateCorner(i)
             table.insert(self.vertices, v_x)
             table.insert(self.vertices, v_y) 
@@ -25,5 +25,6 @@ Hex = Class {
     end;
     draw = function(self)
         love.graphics.polygon('line', self.vertices)
+        love.graphics.points(self.centre.x, self.centre.y)
     end;
 }
