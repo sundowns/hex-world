@@ -1,12 +1,14 @@
 love.filesystem.setRequirePath(love.filesystem.getRequirePath()..";lib/?.lua;lib/;")
-debug = false
+debug = true
 
 local world = {}
+local cam = {}
 
 function love.load()
     --Libraries
     Class = require("lib.class")
     Vector = require("lib.vector")
+    Camera = require("lib.camera")
     Util = require("lib.util")
     constants = require("constants")
 
@@ -15,15 +17,33 @@ function love.load()
     require("class.hexgrid")
     require("class.world")
 
+    cam = Camera(love.graphics.getWidth()/4, love.graphics.getHeight()/2)
+
     world = World(10, 10) 
 end
 
 function love.update(dt)
     world:update(dt)
+
+    -- cam movement logic
+    if love.keyboard.isDown('left', 'a') then
+        cam:move(-1*dt*constants.CAMERA_SPEED, 0)
+    end
+    if love.keyboard.isDown('right', 'd') then
+        cam:move(dt*constants.CAMERA_SPEED, 0)
+    end
+    if love.keyboard.isDown('up', 'w') then
+        cam:move(0, -1*dt*constants.CAMERA_SPEED)
+    end
+    if love.keyboard.isDown('down', 's') then
+        cam:move(0, dt*constants.CAMERA_SPEED)
+    end
 end
 
 function love.draw()
-    world:draw()
+    cam:attach()
+        world:draw()
+    cam:detach()
 end
 
 function love.keypressed(key)
@@ -35,6 +55,7 @@ function love.keypressed(key)
         love.event.quit('restart')
     end
 end
+
 
 
 --https://www.redblobgames.com/grids/hexagons/implementation.html

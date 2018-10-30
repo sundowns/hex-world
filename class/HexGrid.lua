@@ -1,19 +1,20 @@
 HexGrid = Class {
     init = function(self, width, height, x, y)
-        self.x = x
-        self.y = y
         self.width = width
         self.height = height
+        self.x = x
+        self.y = y
         self.grid = {}
-        for x = 0, self.width do
-            self.grid[x] = {}
-            for y = 0, self.height do
-                local centre_x = (constants.HEX_WIDTH * x) + constants.HEX_WIDTH/2
-                local centre_y = (constants.HEX_HEIGHT * y) + constants.HEX_HEIGHT/2
-                if x % 2 == 0 then
+
+        for i = 0, self.width do
+            self.grid[i] = {}
+            for j = 0, self.height do
+                local centre_x = (constants.HEX_WIDTH * i) + constants.HEX_WIDTH/2 
+                local centre_y = (constants.HEX_HEIGHT * j) + constants.HEX_HEIGHT/2
+                if i % 2 == 0 then
                     centre_y = centre_y + constants.HEX_HEIGHT/2 --offset our y coordinates
                 end
-                self.grid[x][y] = Hex(constants.HEX_SIZE, x, y, Vector(centre_x, centre_y)) --TODO: calc centre
+                self.grid[i][j] = Hex(constants.HEX_SIZE, i, j, Vector(centre_x, centre_y))
             end
         end
     end;

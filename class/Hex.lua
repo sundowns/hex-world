@@ -26,5 +26,11 @@ Hex = Class {
     draw = function(self)
         love.graphics.polygon('line', self.vertices)
         love.graphics.points(self.centre.x, self.centre.y)
+
+        if debug then
+            love.graphics.setColor(1,0,0)
+            love.graphics.print(self.x..','..self.y, self.centre.x, self.centre.y)
+            Util.l.resetColour()
+        end
     end;
 }
