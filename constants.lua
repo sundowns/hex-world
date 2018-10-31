@@ -1,9 +1,9 @@
-local HEX_SIZE = 40
+local size = 30
 
 return {
-    HEX_SIZE = HEX_SIZE,
-    HEX_WIDTH = math.sqrt(3) * HEX_SIZE,
-    HEX_HEIGHT = 2 * HEX_SIZE,
+    HEX_SIZE = size,
+    HEX_WIDTH = math.sqrt(3) * size,
+    HEX_HEIGHT = 2 * size,
     CAMERA_SPEED = 100,
     CAMERA_ZOOM_SPEED = 0.2
 }

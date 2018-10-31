@@ -21,15 +21,16 @@ Hex = Class {
     calculateCorner = function(self, i)
         local angle_deg = 60 * i 
         local angle_rad = math.pi / 180 * angle_deg
-        return self.centre.x + self.size * math.cos(angle_rad), self.centre.y + self.size * math.sin(angle_rad)
+        -- I dont understand why i have to multiply this by 1.15 for them to align. Sorry future me
+        return self.centre.x + (self.size*1.15) * math.cos(angle_rad), self.centre.y + (self.size*1.15) * math.sin(angle_rad)
     end;
     draw = function(self)
         love.graphics.polygon('line', self.vertices)
-        love.graphics.points(self.centre.x, self.centre.y)
-
+        
         if debug then
+            love.graphics.points(self.centre.x, self.centre.y)
             love.graphics.setColor(1,0,0)
-            love.graphics.print(self.x..','..self.y, self.centre.x, self.centre.y)
+            love.graphics.print(self.x..','..self.y, self.centre.x -self.size/3, self.centre.y)
             Util.l.resetColour()
         end
     end;
