@@ -63,10 +63,13 @@ HexMap = Class {
     end;
     draw = function(self)
         for i, hex in pairs(self.map) do
+            Util.l.resetColour()
             love.graphics.polygon('line', self:polygon_corners(hex))
 
             if debug then
                 local centre = self:hex_to_pixel(hex)
+                love.graphics.points(centre.x, centre.y)
+                love.graphics.setColor(1,0,0)
                 love.graphics.print(hex:__tostring(), centre.x - constants.HEX_WIDTH/3, centre.y)
             end
         end

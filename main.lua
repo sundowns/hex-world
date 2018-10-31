@@ -19,7 +19,7 @@ function love.load()
 
     cam = Camera(0,0)
 
-    world = World(Vector(0,0), 5, constants.HEX_SIZE, constants.HEX_ORIGIN) 
+    world = World(Vector(0,0), 4, constants.HEX_SIZE, constants.HEX_ORIGIN) 
 end
 
 function love.update(dt)
